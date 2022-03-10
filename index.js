@@ -3,10 +3,11 @@ const app = express();
 const mongoose = require('mongoose');
 const { ConnectToDb } = require('./mongoConfig');
 const port = 4000;
+const cors = require('cors');
 
 const AnimeRouter = require('./Routes/animes');
-
 //-----------Import End-----------//
+app.use(cors());
 //configs
 app.use(express.json());
 ConnectToDb();
