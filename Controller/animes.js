@@ -1,17 +1,24 @@
 //add error handling to controller funcs, try catch?
 const Animes = require('../Model/animes');
 
-const GetAllAnime = (req, res) => {
-    console.log(req, res);
-    Animes.find({}, (err, animeData) => res.json(animeData));
+const GetAllAnime = async(req, res) => {
+    try {
+        const animes = await Animes.find({}, null, {limit: 20});
+        res.send(animes);
+    } catch (e) {
+        console.log(e); // let user know if an error has occured not in console
+        res.send(e);
+    }
 }
 
-const GetAllAnimeByGenre = (req, res) => {
-    console.log(req.query);
-    Animes.find({genre: JSON.parse(req.query.genre)}, (err, animeData) => {
-        console.log(animeData);
-        res.json(animeData);
-    });
+const GetAllAnimeByGenre = async(req, res) => {
+    try {
+        const animesByGenre = await Animes.find({genre: JSON.parse(req.query.genre)}, null, {limit: 20});
+        res.send(animesByGenre);
+    } catch (e) {
+        console.log(e); // let user know if an error has occured not in console
+        res.send(e);
+    }
 }
 
 module.exports = {
