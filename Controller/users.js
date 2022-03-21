@@ -1,4 +1,6 @@
 const Users = require("../Model/users");
+const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 const SignUp = (req, res) => {
    const user = new Users();
@@ -11,7 +13,19 @@ const SignUp = (req, res) => {
    });
 };
 
-const Login = (req, res) => {};
+const Login = (req, res) => {
+   Users.findOne({ email: req.body.email }, (err, users) => {
+      if (err || !users) return res.status(500).send("Login failed");
+
+      if (users.comparePassword(req.body.password)) {
+         const token = jwt.sign({ id: users._id }, "thisismysecret");
+         res.send(token);
+      } else {
+         res.send("could not log in");
+      }
+      //   res.send(users.comparePassword(req.body.password));
+   });
+};
 
 module.exports = {
    SignUp,
