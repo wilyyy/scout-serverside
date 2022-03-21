@@ -1,10 +1,27 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const bcrypt = require("bcryptjs");
 
-const userSchema = new Schema({
+const UserSchema = new Schema({
+   email: String,
+   password: String,
+});
 
-})
+UserSchema.pre("save", function (next) {
+   const user = this;
 
-const users = mongoose.model('Users', animesSchema);
+   bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash(user.password, salt, function (err, hash) {
+         user.password = hash;
+         next();
+      });
+   });
+});
 
-module.exports = Animes;
+UserSchema.methods.comparePassword = function (password) {
+   return bcrypt.compare(password, hash);
+};
+
+const Users = mongoose.model("Users", UserSchema);
+
+module.exports = Users;
