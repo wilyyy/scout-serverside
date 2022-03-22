@@ -10,9 +10,9 @@ const GetAllFromYourList = async (req, res) => {
    }
 };
 
-const AddToYourList = (req, res) => {
+const AddToYourList = async (req, res) => {
    try {
-      const yourListAnimes = new YourList();
+      const yourListAnimes = await new YourList();
       yourListAnimes.uid = req.body.uid;
       yourListAnimes.title = req.body.title;
       yourListAnimes.synopsis = req.body.synopsis;
