@@ -23,7 +23,6 @@ const Login = (req, res) => {
       } else {
          res.send("could not log in");
       }
-      //   res.send(users.comparePassword(req.body.password));
    });
 };
 

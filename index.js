@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const AnimeRouter = require("./Routes/animes");
 const UserRouter = require("./Routes/users");
+const YourListRouter = require("./Routes/yourList");
 
 //-----------Import End-----------//
 
@@ -17,6 +18,7 @@ ConnectToDb();
 //routes
 app.use(AnimeRouter);
 app.use(UserRouter);
+app.use(YourListRouter);
 
 app.get("/", (req, res) => res.send("Hello World!!"));
 
