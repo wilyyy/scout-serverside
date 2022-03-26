@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const SignUp = (req, res) => {
    const user = new Users();
+   user.username = req.body.username;
    user.email = req.body.email;
    user.password = req.body.password;
    //tweak save later according to scout needs
