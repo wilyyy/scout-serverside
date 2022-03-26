@@ -8,3 +8,9 @@ Application utilizing Express.js, Node.js and MongoDB that handles all serversid
 - animes collection will only be used to transfer to filter to client side?
 - yourlist will be linked to user
 - formidable for user card? or react save png library
+
+password validation, populate yourlist instead and use refs, get rid of secrets and use diff mongo url
+more things in user schema
+
+figure out how to get all animes instead of just 20
+
