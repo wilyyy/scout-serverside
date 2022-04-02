@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const SignUp = (req, res) => {
    const user = new Users();
    user.email = req.body.email;
+   user.name = req.body.name;
    user.password = req.body.password;
    //tweak save later according to scout needs
    user.save((err, done) => {
@@ -30,3 +31,5 @@ module.exports = {
    SignUp,
    Login,
 };
+
+
